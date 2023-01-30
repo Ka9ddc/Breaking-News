@@ -222,6 +222,8 @@ export const update = async (req, res) => {
 export const erase = async (req, res) => {
   try {
     const { id } = req.params;
+    const news = await findByIdService(id);
+
     if (news.user._id != req.userId) {
       return res.status(400).send({ message: "You didn't deleted this news" });
     }
